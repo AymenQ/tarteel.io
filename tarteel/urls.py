@@ -17,6 +17,8 @@ router = routers.DefaultRouter()
 # router.register(r'groups', restapi.views.GroupViewSet)
 router.register(r'api/v1/recordings', restapi.views.AnnotatedRecordingViewSet,
                 base_name='recordings')
+router.register(r'api/v1/evaluations', restapi.views.EvaluationViewSet,
+                base_name='evaluations')
 
 urlpatterns = [
     # Top Level API
