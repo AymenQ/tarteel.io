@@ -4,6 +4,7 @@ from django.conf.urls import include
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.urls import path
 # REST
 from rest_framework import routers
 # Tarteel
@@ -15,8 +16,6 @@ import restapi.views
 router = routers.DefaultRouter()
 # router.register(r'users', restapi.views.UserViewSet)
 # router.register(r'groups', restapi.views.GroupViewSet)
-router.register(r'api/v1/recordings', restapi.views.AnnotatedRecordingViewSet,
-                base_name='recordings')
 
 urlpatterns = [
     # Top Level API
@@ -43,6 +42,8 @@ urlpatterns = [
     url(r'^api/download-audio/', restapi.views.DownloadAudio.as_view()),
     url(r'^sample-recordings/', audio.views.sample_recordings),
     url(r'^download-full-dataset-csv/', audio.views.download_full_dataset_csv),
+    # Rest API
+    path('api/v1/', include('restapi.urls')),
     # Audio App (Main Page)
     url(r'^$', audio.views.index, name='index'),
     url(r'^privacy/', audio.views.privacy, name='privacy'),
